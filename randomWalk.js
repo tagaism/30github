@@ -1,7 +1,7 @@
 let x;
 let y;
 function setup() {
-    createCanvas(400, 400);
+    createCanvas(1000, 900);
     x = 200;
     y = 200;
     background(51);
@@ -9,7 +9,7 @@ function setup() {
 
 function draw() {
     stroke(random() * 255);
-    strokeWeight(2);
+    strokeWeight(5);
     point(x,y);
 
     let r = floor(random(4));
