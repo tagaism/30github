@@ -1,42 +1,12 @@
-let x;
-let y;
+let walker;
+
 function setup() {
     createCanvas(1000, 900);
-    x = 200;
-    y = 200;
-    background(51);
+    walker = new Walker(width / 2, height / 2);
 }
 
 function draw() {
-    stroke(random() * 255);
-    strokeWeight(5);
-    point(x,y);
-
-    let r = floor(random(4));
-    switch(r) {
-        case 0:
-            if (x > width) {
-                x = 0;
-            }
-            x += 5;
-            break;
-        case 1:
-            if (x < 0) {
-                x = width;
-            }
-            x -= 5;
-            break;
-        case 2:
-            if (y > height) {
-                y = 0;
-            }
-            y += 5;
-            break;
-        case 3:
-            if (y < 0) {
-                y = height;
-            }
-            y -= 5;
-            break;
-    }
+    background(0);
+    walker.update();
+    walker.show();
 }
