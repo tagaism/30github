@@ -1,32 +1,28 @@
-let ball;
-
+let balls = [];
+let mu = 0.1;
 function setup() {
     createCanvas(1500, 900);
-    ball = new Walker(3, 2, 2);
-    ball1 = new Walker(width - 4, 4, 4);
-    background(0);
+    for(let i = 0; i < 10; i++) {
+        balls[i] = new Walker(random(width), 50, random(1, i * 2.5));
+    }
 }
 
 function draw() {
+    background(0);
+
+    for(let ball of balls) {
+        if(mouseIsPressed) {
+            let wind = createVector(-0.3, 0);
+            ball.applyForce(wind);
+        }
+        let gravity = createVector(0, 0.5);
+        let weight = p5.Vector.mult(gravity, ball.mass);
     
+        ball.applyForce(weight);
     
-    if(mouseIsPressed) {
-        let wind = createVector(-0.3, 0);
-        ball.applyForce(wind);
-        ball1.applyForce(wind);
+        ball.update();
+        ball.friction();
+        ball.edges();
+        ball.show();
     }
-    let gravity = createVector(0, 0.1);
-
-    let weight = p5.Vector.mult(gravity, ball.mass);
-    let weight1 = p5.Vector.mult(gravity, ball1.mass);
-
-    ball.applyForce(weight);
-    ball1.applyForce(weight1);
-
-    ball.update();
-    ball1.update();
-    ball.edges();
-    ball1.edges(    );
-    ball.show();
-    ball1.show();
 }

@@ -12,6 +12,20 @@ class Walker {
         this.acc.add(f);
     }
 
+    friction() {
+        let diff = height - (this.pos.y + this.r);
+        if(diff < 1) {
+            
+            //Direction of friction
+            let friction = this.vel.copy();
+            friction.normalize();
+            friction.mult(-1);
+            let normal = this.mass;
+            friction.setMag(mu * normal);
+            this.applyForce(friction);
+        }
+    }
+
     edges() {
         if(this.pos.y >= height - this.r) {
             this.pos.y = height - this.r;
@@ -34,9 +48,9 @@ class Walker {
     }
 
     show() {
-        stroke(random(255), random(255), random(255));
+        stroke(200);
         strokeWeight(2);
-        fill(100, 100);
+        fill(150, 150);
         ellipse(this.pos.x, this.pos.y, this.r * 2);
     }
 }
