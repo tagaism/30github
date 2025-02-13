@@ -26,6 +26,16 @@ class Walker {
         }
     }
 
+    drag(c) {
+        let drag = this.vel.copy();
+        drag.normalize();
+        drag.mult(-1);
+
+        let speed = this.vel.magSq();
+        drag.setMag(c * speed);
+        this.applyForce(drag);
+    }
+
     edges() {
         if(this.pos.y >= height - this.r) {
             this.pos.y = height - this.r;
