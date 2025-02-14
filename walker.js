@@ -15,7 +15,6 @@ class Walker {
     friction() {
         let diff = height - (this.pos.y + this.r);
         if(diff < 1) {
-            
             //Direction of friction
             let friction = this.vel.copy();
             friction.normalize();
