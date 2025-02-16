@@ -20,9 +20,4 @@ class Attractor {
         fill(255, 0,0);
         ellipse(this.pos.x, this.pos.y, this.r*2);
     }
-
-    // applyForce(force) {
-    //     let f = force.div(this.mass);
-    //     this.acc.add(f);
-    // }
 }
