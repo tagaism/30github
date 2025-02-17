@@ -20,8 +20,6 @@ function draw() {
     for(let mover of movers) {
         mover.update();
         mover.show();
-        attractor.show();
-        attractor.attract(mover);
     }
 
 }

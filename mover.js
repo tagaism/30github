@@ -1,11 +1,19 @@
 class Mover {
-    constructor(x, y, m) {
+    constructor(x, y, vx, vy, m) {
         this.pos = createVector(x,y);
-        this.vel = p5.Vector.random2D(); //createVector(0, 0);
-        this.vel.mult(5);
+        this.vel = createVector(vx,vy);
         this.acc =  createVector(0, 0);
         this.mass = m;
-        this.r = sqrt(this.mass);
+        this.r = sqrt(this.mass) * 2;
+    }
+
+    attract(mover) {
+        let force = p5.Vector.sub(this.pos, mover.pos);
+        let distanceSqr = constrain(force.magSq(), 25, 2500);
+        let G = 25;
+        let strength = G * (this.mass * mover.mass) / distanceSqr;
+        force.setMag(strength);
+        mover.applyForce(force);
     }
 
     applyForce(force) {
