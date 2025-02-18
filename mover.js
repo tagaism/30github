@@ -4,13 +4,13 @@ class Mover {
         this.vel = createVector(vx,vy);
         this.acc =  createVector(0, 0);
         this.mass = m;
-        this.r = sqrt(this.mass) * 2;
+        this.r = sqrt(this.mass);
     }
 
     attract(mover) {
         let force = p5.Vector.sub(this.pos, mover.pos);
         let distanceSqr = constrain(force.magSq(), 25, 2500);
-        let G = 25;
+        let G = 0.01;
         let strength = G * (this.mass * mover.mass) / distanceSqr;
         force.setMag(strength);
         mover.applyForce(force);
@@ -45,6 +45,10 @@ class Mover {
     }
 
     edges() {
+        if(this.pos.y <= 0 + this.r) {
+            this.pos.y = this.r;
+            this.vel.y *= -1;
+        }
         if(this.pos.y >= height - this.r) {
             this.pos.y = height - this.r;
             this.vel.y *= -1;
@@ -66,7 +70,7 @@ class Mover {
     }
 
     show() {
-        stroke(200);
+        stroke(255);
         strokeWeight(2);
         fill(150, 150);
         ellipse(this.pos.x, this.pos.y, this.r * 2);
