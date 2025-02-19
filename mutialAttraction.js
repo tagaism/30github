@@ -3,7 +3,7 @@ let sun;
 function setup() {
     createCanvas(1500, 900);
 
-    for(let i = 0; i < 10; i++) {
+    for(let i = 0; i < 3; i++) {
         let pos = p5.Vector.random2D();
         let vel = pos.copy();
         vel.setMag(10)
@@ -11,23 +11,23 @@ function setup() {
         vel.rotate(PI/2);
         // let x = random(width);
         // let y = random(height);
-        let m = random(25, 25);
-        movers[i] = new Mover(pos.x, pos.y, vel.x, vel.y, m);
+        let m = random(25, 40);
+        movers[i] = new Mover(pos.x, pos.y, 0.001, 0.001, 1);
     }
-    sun = new Mover(750, 450, 0, 0, 10000);
+    // sun = new Mover(750, 450, 0, 0, 10000);
     // movers[3] = new Mover(200, 100, 5, 0, 10);
 }
 
 function draw() {
-    background(10, 10);
+    background(40, 40);
     // translate(width/2, height/2);
     for(let mover of movers) {
-        sun.attract(mover);
+        // sun.attract(mover);
         for(let other of movers) {
             if(mover !== other) {
                 mover.attract(other);
-                // stroke(255);
-                // line(mover.pos.x, mover.pos.y, other.pos.x, other.pos.y);
+                stroke(255);
+                line(mover.pos.x, mover.pos.y, other.pos.x, other.pos.y);
             }
         }
     }
@@ -36,5 +36,5 @@ function draw() {
         mover.edges();
         mover.show();
     }
-    sun.show()
+    // sun.show()
 }

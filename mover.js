@@ -2,7 +2,7 @@ class Mover {
     constructor(x, y, vx, vy, m) {
         this.pos = createVector(x,y);
         this.vel = createVector(vx,vy);
-        this.acc =  createVector(0, 0);
+        this.acc = createVector(0, 0);
         this.mass = m;
         this.r = sqrt(this.mass);
     }
@@ -10,7 +10,7 @@ class Mover {
     attract(mover) {
         let force = p5.Vector.sub(this.pos, mover.pos);
         let distanceSqr = constrain(force.magSq(), 25, 2500);
-        let G = 0.01;
+        let G = 100;
         let strength = G * (this.mass * mover.mass) / distanceSqr;
         force.setMag(strength);
         mover.applyForce(force);
