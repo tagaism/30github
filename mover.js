@@ -1,10 +1,15 @@
 class Mover {
-    constructor(x, y, vx, vy, m) {
+    constructor(x, y, m) {
         this.pos = createVector(x,y);
-        this.vel = createVector(vx,vy);
+        this.vel = p5.Vector.random2D();
+        this.vel.mult(5);
         this.acc = createVector(0, 0);
         this.mass = m;
-        this.r = sqrt(this.mass);
+        this.r = sqrt(this.mass) * 2;
+
+        this.angle = 0;
+        this.angleV = 0;
+        this.angleA = 0;
     }
 
     attract(mover) {
@@ -73,6 +78,11 @@ class Mover {
         stroke(255);
         strokeWeight(2);
         fill(150, 150);
-        ellipse(this.pos.x, this.pos.y, this.r * 2);
+        push();
+        translate(this.pos.x, this.pos.y)
+        // ellipse(this.pos.x, this.pos.y, this.r * 2);
+        this.angle = this.vel.heading();
+        rotate(this.angle);
+        triangle(-this.r, -this.r / 2, -this.r, -this.r / 2);
     }
 }
