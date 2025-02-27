@@ -1,10 +1,16 @@
 class Particle {
     constructor(x, y) {
-        this.locked = false;
-        this.acceleration = createVector(0, 0);
-        this.velocity = createVector(0, 0);
         this.position = createVector(x, y);
-        this.mass = 1;
+        this.acceleration = createVector(0, 0);
+        this.velocity = p5.Vector.random2D();
+        this.velocity.mult(random(0.5, 2));
+        // this.mass = 1;
+        this.r  = 4;
+        this.lifetime = 255;
+    }
+
+    finished() {
+        return(this.lifetime < 0);
     }
 
     applyForce(force) {
@@ -14,13 +20,10 @@ class Particle {
     }
 
     update() {
-        if(!this.locked) {
-            this.velocity.mult(0.99);
-            this.velocity.add(this.acceleration);
-            this.position.add(this.velocity);
-            this.acceleration.mult(0);
-        }
-        // this.lifespan -= 2.0;
+        this.velocity.add(this.acceleration);
+        this.position.add(this.velocity);
+        this.acceleration.set(0, 0);
+        this.lifetime -= 1;
     }
     
     show() {
@@ -28,5 +31,24 @@ class Particle {
         strokeWeight(1);
         fill(255);
         ellipse(this.position.x, this.position.y, 3);
+    }
+
+    edges() {
+        if(this.position.y <= 0 + this.r) {
+            this.position.y = this.r;
+            this.velocity.y *= -1;
+        }
+        if(this.position.y >= height - this.r) {
+            this.position.y = height - this.r;
+            this.velocity.y *= -1;
+        }
+        if(this.position.x >= width - this.r) {
+            this.position.x = width - this.r;
+            this.velocity.x *= -1;
+        }
+        if(this.position.x <= 0 + this.r) {
+            this.position.x = this.r;
+            this.velocity.x *= -1;
+        }
     }
 }

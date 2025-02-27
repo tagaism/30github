@@ -6,7 +6,7 @@ let k = 0.1;
 
 function setup() {
     createCanvas(1700, 1000);
-    for(let i = 0; i < 400; i++) {
+    for(let i = 0; i < 50; i++) {
         particles[i] = new Particle(600, i * spacing);
         if(i !== 0) {
             let a = particles[i];
