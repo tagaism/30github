@@ -16,7 +16,6 @@ function draw() {
         p.edges();
         p.show();
     }
-    console.log(particles.length);
     for(let i = particles.length - 1; i >= 0; i--) {
         if(particles[i].finished()) {
             particles.splice(i, 1);
