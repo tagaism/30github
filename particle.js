@@ -3,10 +3,10 @@ class Particle {
         this.position = createVector(x, y);
         this.acceleration = createVector(0, 0);
         this.velocity = p5.Vector.random2D();
-        this.velocity.mult(random(0.5, 2));
+        this.velocity.mult(random(0.5, 6));
         // this.mass = 1;
-        this.r  = 4;
-        this.lifetime = 255;
+        this.r  = random(10, 50);
+        this.lifetime = random(20, 150);
     }
 
     finished() {
@@ -29,8 +29,8 @@ class Particle {
     show() {
         stroke(255);
         strokeWeight(1);
-        fill(255);
-        ellipse(this.position.x, this.position.y, 3);
+        fill(random(0,250), random(0,250), random(0,250), 100)
+        ellipse(this.position.x, this.position.y, this.r);
     }
 
     edges() {
