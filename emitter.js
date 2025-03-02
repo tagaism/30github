@@ -10,10 +10,16 @@ class Emitter {
         }
     }
 
+    applyForce(force) {
+        for(let p of this.particles) {
+            p.applyForce(force);
+        }
+    }
+
     update() {
         for(let p of this.particles) {
             let gravity = createVector(0, 0.2);
-            p.applyForce(gravity);
+            p.edges();
             p.update();
         }
         for(let i = this.particles.length - 1; i>=0; i--) {

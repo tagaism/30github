@@ -10,7 +10,9 @@ function setup() {
 
 function draw() {
     background(0);
+    let force = createVector(0, -0.4);
     for(let e of emitters) {
+        e.applyForce(force);
         e.emit(1);
         e.show();
         e.update();

@@ -6,7 +6,7 @@ class Particle {
         this.velocity.mult(random(0.5, 6));
         // this.mass = 1;
         this.r  = random(10, 50);
-        this.lifetime = random(20, 150);
+        this.lifetime = random(20, 100);
     }
 
     finished() {
