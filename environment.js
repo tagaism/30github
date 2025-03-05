@@ -6,7 +6,7 @@ function setup() {
 }
 
 function draw() {
-    background(0);
+    background(0, 1);
     fill(255, 0, 0);
     target = createVector(mouseX, mouseY);
     circle(target.x, target.y, 15)
