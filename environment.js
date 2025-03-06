@@ -10,7 +10,7 @@ function draw() {
     fill(255, 0, 0);
     target = createVector(mouseX, mouseY);
     circle(target.x, target.y, 15)
-
+    //black square!!
     vehicle.seek(target);
     vehicle.update();
     vehicle.show();
