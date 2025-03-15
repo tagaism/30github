@@ -1,3 +1,4 @@
+
 class Vehicle {
     constructor(x, y) {
         this.pos = createVector(x, y);
@@ -8,12 +9,18 @@ class Vehicle {
         this.r = 15;
     }
 
+    flee(target) {
+        return this.seek(target).mult(-1);
+    }
+
     seek(target) {
         let force = p5.Vector.sub(target, this.pos);
         force.setMag(this.maxSpeed);
         force.sub(this.vel);
         force.limit(this.maxForce);
-        this.applyForce(force);
+        // force.mult(-1);
+        // this.applyForce(force);
+        return force;
     }
 
     applyForce(force) {
@@ -38,3 +45,20 @@ class Vehicle {
         pop();
     }    
 }
+
+class Target extends Vehicle {
+    constructor(x, y) {
+        super(x, y)
+    }
+
+    show() {
+        stroke(255);
+        strokeWeight(2);
+        fill('#F063A4');
+        push();
+        translate(this.pos.x, this.pos.y);
+        circle(0, 0, this.r * 2);
+        pop();
+    }
+}
+
