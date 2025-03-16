@@ -9,6 +9,14 @@ class Vehicle {
         this.r = 15;
     }
 
+    pursue(vehicle) {
+        let target = vehicle.pos.copy();
+        let velocity = vehicle.vel.copy();
+        velocity.mult(10);
+        target.add(velocity);
+        target.add(vehicle)
+    }
+
     flee(target) {
         return this.seek(target).mult(-1);
     }
@@ -43,12 +51,13 @@ class Vehicle {
         rotate(this.vel.heading())
         triangle(-this.r, -this.r / 2, -this.r, this.r / 2, this.r, 0);
         pop();
-    }    
+    }
 }
 
 class Target extends Vehicle {
     constructor(x, y) {
-        super(x, y)
+        super(x, y);
+        this.vel = createVector(5, 2);
     }
 
     show() {

@@ -18,7 +18,8 @@ function draw() {
     // pursuer.seek(target);
     pursuer.update();
     pursuer.show();
+
+    // target.edges();
     target.update();
     target.show();
-    target.edges();
 }
